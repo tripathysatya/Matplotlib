@@ -1,0 +1,1877 @@
+
+ Numpy
+ Matplotlib
+ Pandas
+ Seaborn
+ plotly
+ ....
+ 
+Matplotlib:
+------------
+Numpy --->Data Analysis Library
+Pandas--->Data Analysis Library/Visualization library
+Matplotlib/Seaborn/Plotly --->Data Visualization Libraries
+
+ 
+1.1 Need of data visualization:
+------------------------------
+text form
+graphical form
+ 
+ 
+ Data visualization is the representation of data in visual format.
+ Advantages:
+    1. We can compare very easily.
+    2. We can identify relationships very easily.
+    3. We can identity symmetry and patterns between data.
+    4. We can analyze very easily.
+    etc
+
+There are multiple python based data visualization libraries:
+  1. Matplotlib
+  2. Seaborn
+  3. Plotly
+  etc
+
+1. Basic Introduction to Matplotlib:
+------------------------------------
+1. most popular and oldest data visulization library.
+   Python's alternative to MatLab
+ 
+2. It is open source and freeware where as Matlab is not open source(closed source)
+   and not freeware.
+
+3. By using this library we can plot data in graphical form very easily. That graphical form can be either 2-D or 3-D.
+
+4. It is comprehensive library  for creating static, animated, and interactive visualizations in python.
+
+5. Jhon Hunter developed matplotlib on top of Numpy and Sidepy libraries.
+ 
+6.  It has very large community support. Every data scientist used this library atleast once in his life.
+
+7. advanced libraries like seaborn, plotly are developed on top of matplotlib.
+
+ The official website: https://matplotlib.org
+ 
+ ****Examples tab
+
+Installing Matplotlib:
+---------------------
+There are 2 ways 
+
+1. with Anaconda distribution, this library will be available automatically.
+   conda install matplotlib
+
+2. In our system, if python is already available, then we can install by using python package manager(pip)
+ pip install matplotlib
+
+
+How to check installation:
+--------------------------
+>>> import matplotlib
+>>> matplotlib.__version__
+'3.4.2'
+
+
+D:\durgaclasses>pip list
+D:\durgaclasses>pip freeze
+
+
+Types of Plots:
+---------------
+There are multiple types are available to represent our data in graphical form.
+The important are:
+
+1. Line Plots
+2. Bar charts
+3. Pie charts
+4. Histogram
+5. Scatter plots 
+etc
+
+Based on input data and requirement, we can choose the corresponding plot.
+
+Note:
+1. Matplotlib --->package/library
+2. pyplot --->module name
+3. pyplot module defines several functions to create plots
+    plot()
+    bar()
+    pie()
+    hist()
+    scatter()
+    etc
+4. We can create plots in 2 approaches
+   1. Functional oriented approach (For small data sets)
+   2. Object oriented approach (For larger data sets)
+
+11-07-2021
+
+Line Plots:
+-----------
+We can mark data points from the input data and we can connect these data points with lines. Such type of plots are called line plots.
+
+We can use line plots to determine the relationship between two data sets.
+Data set is a collection of values like ndarray,python's list etc
+
+
+ 
+wickets = [1,2,3,4,5,6,7,8,9,10]
+overs = [1,4,5,,,..20]
+
+The values from each data set will be plotted along an axis.(x-axis,y-axis)
+
+matplotlib.pyplot.plot()
+
+
+import matplotlib.pyplot as plt
+plt.plot()--->To create line plot
+plt.bar()--->To create bar chart
+plt.pie()--->To create pie chart
+
+
+
+matplotlib--->seaborn and plotly
+line plot--->bar graph,pie chart, histogram etc
+
+
+
+plot(*args, scalex=True, scaley=True, data=None, **kwargs)
+    Plot y versus x as lines and/or markers.
+
+    Call signatures::
+
+        plot([x], y, [fmt], *, data=None, **kwargs)
+        plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
+   
+    >>> plot(x, y)        # plot x and y using default line style and color
+    >>> plot(x, y, 'bo')  # plot x and y using blue circle markers
+    >>> plot(y)           # plot y using x as index array 0..N-1
+    >>> plot(y, 'r+')     # ditto, but with red plusses
+
+
+*args--->any collection of values(this collection of values will become tuple)
+**kwargs--->any collection of key-value pairs (dictionary)
+
+
+plt.plot(x,y)
+The data points will be considered from x and y values.
+x=[10,20,30]
+y=[1,2,3]
+
+data points: (10,1), (20,2),(30,3)
+
+
+eg-1: Creation of line plot by passing 2 nd-arrays:
+----------------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+y = x**2
+plt.plot(x,y) #(1,1),(2,4),(3,9)...
+plt.show()
+
+
+What is figure?
+---------------
+Figure is an individual window on the screen, in which matplotlib displays the graphs. ie it is the container for the graphical output.
+
+plot() function is responsible to create this figure object.
+
+
+How to add title to the line plot:
+----------------------------------
+The title describes the information about our graph.
+plt.title('Square function line plot')
+
+How to add xlabel and ylabel to the line plot:
+----------------------------------------------
+The xlabel describes inforamtion about x-axis data.
+similarly ylabel also
+
+plt.xlabel('N value')
+plt.ylabel('Square of N')
+
+
+plt.xlabel('Overs')
+plt.ylabel('Wickets')
+plt.title('Fall of wickets')
+
+
+
+plt.xlabel('Year')
+plt.ylabel('Sales')
+plt.title('Nokia Mobile Sales Report')
+
+
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+y = x**2
+plt.plot(x,y) #(1,1),(2,4),(3,9)...
+plt.title('Square Function Line Plot')
+plt.xlabel('N value')
+plt.ylabel('Square of N')
+plt.show()
+
+
+plt.plot(x,y)
+plt.title()
+plt.xlabel()
+plt.ylabel()
+plt.show()
+
+
+Line properties:
+-----------------
+A line drawn on the graph has several properties like color,style,width of the line,transparency etc. We can customize these based on our requirement.
+
+1. Marker property:
+-------------------
+We can use marker property to highlight data points on the line plot.
+We have to use marker keyword argument.
+
+plt.plot(a,b,marker='o')
+
+o means circle marker
+
+The allowed markers are:
+ **Markers**
+
+    =============   ===============================
+    character       description
+    =============   ===============================
+    ``'.'``         point marker
+    ``','``         pixel marker
+    ``'o'``         circle marker
+    ``'v'``         triangle_down marker
+    ``'^'``         triangle_up marker
+    ``'<'``         triangle_left marker
+    ``'>'``         triangle_right marker
+    ``'1'``         tri_down marker
+    ``'2'``         tri_up marker
+    ``'3'``         tri_left marker
+    ``'4'``         tri_right marker
+    ``'8'``         octagon marker
+    ``'s'``         square marker
+    ``'p'``         pentagon marker
+    ``'P'``         plus (filled) marker
+    ``'*'``         star marker
+    ``'h'``         hexagon1 marker
+    ``'H'``         hexagon2 marker
+    ``'+'``         plus marker
+    ``'x'``         x marker
+    ``'X'``         x (filled) marker
+    ``'D'``         diamond marker
+    ``'d'``         thin_diamond marker
+    ``'|'``         vline marker
+    ``'_'``         hline marker
+    =============   ===============================
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+y = x**2
+plt.plot(x,y,marker='*') #(1,1),(2,4),(3,9)...
+plt.title('Square Function Line Plot')
+plt.xlabel('N value')
+plt.ylabel('Square of N')
+plt.show()
+
+
+2. Linestyle property:
+---------------------
+Linestyle specifies whether the line is solid or dashed or dotted etc
+We can specify linestyle by using linestyle keyword argument.
+
+-     ----->solid line
+--    ----->dashed line
+:    ----->dotted line
+-.    ----->dash-dotted line
+
+    =============    ===============================
+    character        description
+    =============    ===============================
+    ``'-'``          solid line style
+    ``'--'``         dashed line style
+    ``'-.'``         dash-dot line style
+    ``':'``          dotted line style
+    =============    ===============================
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+y = x**2
+plt.plot(x,y,marker='o',linestyle='-.') #(1,1),(2,4),(3,9)...
+plt.title('Square Function Line Plot')
+plt.xlabel('N value')
+plt.ylabel('Square of N')
+plt.show()
+
+3. color property:
+------------------
+We can specify our required color for the line plot.
+We have to use color keyword argument.
+We can use any color even hexa code also.
+Matplotlib defines some short codes for commonly used colors. We can use short codes also.
+
+    =============    ===============================
+    character        color
+    =============    ===============================
+    ``'b'``          blue
+    ``'g'``          green
+    ``'r'``          red
+    ``'c'``          cyan
+    ``'m'``          magenta
+    ``'y'``          yellow
+    ``'k'``          black
+    ``'w'``          white
+    =============    ===============================
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+y = x**2
+plt.plot(x,y,marker='o',linestyle='-',color='#b02f15') #(1,1),(2,4),(3,9)...
+plt.title('Square Function Line Plot')
+plt.xlabel('N value')
+plt.ylabel('Square of N')
+plt.show()
+
+
+default color:
+--------------
+If we are not specifying color then default color will be selcted from style cycle. We can check default colors as follows:
+
+>>> plt.rcParams['axes.prop_cycle'].by_key()
+{'color': ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']}
+
+
+first default color: blue
+second default color: orange
+third default color: green
+fourth default color: red
+etc
+
+
+
+shortcut way to specify all 3 marker, linestyle,color properties:
+-----------------------------------------------------------------
+
+We can use short notation: either     mlc     or cml
+plt.plot(a,b,marker='o',linestyle='-',color='r')
+plt.plot(a,b,'o-r') #mlc
+plt.plot(a,b,'ro-') #cml
+
+In this shortcut, we should use shortcode only for color.
+
+
+
+plt.plot(a,b,'o-r')--->valid
+plt.plot(a,b,'o-red')--->invalid
+plt.plot(a,b,'o-#1c203d')--->invalid
+
+We can see all line properties from the following link:
+https://matplotlib.org/2.0.2/api/lines_api.html
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,11)
+plt.plot(a,a**3,'o-r',lw=10,ms=15,mfc='yellow',alpha=0.1) #mlc
+plt.show()
+
+
+Components of Line plot:
+------------------------
+figure
+axes/plot
+x-axis and y-axis
+title
+xlabel and ylabel
+xticks and yticks
+
+Sequence of activities of plot function:
+----------------------------------------
+1. Creation of figure object
+2. Creation of plot object/axes
+3. Draw x and y axis
+4. Mark evenly spaced values on x-axis and y-axis(xticks and yticks)
+5. Plot the data points
+6. Connect these data points with line
+7. Add title,xlabel and ylabel
+
+
+How to customize the size of the figure:
+----------------------------------------
+The default size of the figure: 8 inches width and 6 inches height.
+But we can customize based on our requirement. For this we have to use figure() function.
+
+figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True, FigureClass=<class 'matplotlib.figure.Figure'>, clear=False, **kwargs)
+    Create a new figure, or activate an existing figure.
+
+
+figsize : (float, float), default: :rc:`figure.figsize`
+        Width, height in inches.
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+#plt.figure(num=1,figsize=(10,4),facecolor='blue')
+#plt.figure(num=1,figsize=(3,3),facecolor='g')
+plt.figure(figsize=(3,3),facecolor='g')
+a = np.arange(1,6)
+plt.plot(a,a,'o-r')
+plt.show()
+
+
+How to save line plot to a file:
+--------------------------------
+We can save line plot to a file instead of displaying on the screen.
+We have to use savefig() function.
+
+import matplotlib.pyplot as plt
+import numpy as np
+#plt.figure(num=1,figsize=(10,4),facecolor='blue')
+#plt.figure(num=1,figsize=(3,3),facecolor='g')
+plt.figure(figsize=(3,3),facecolor='g')
+a = np.arange(1,6)
+plt.plot(a,a,'o-r')
+plt.savefig('identitylineplot.png')
+
+Bydefault this figure will be saved in the current working directory. But we can provide any location based on our requirement.
+
+import matplotlib.pyplot as plt
+import numpy as np
+#plt.figure(num=1,figsize=(10,4),facecolor='blue')
+#plt.figure(num=1,figsize=(3,3),facecolor='g')
+plt.figure(figsize=(3,3),facecolor='g')
+a = np.arange(1,6)
+plt.plot(a,a,'o-r')
+plt.savefig('C:\\Users\\lenovo\\Desktop\\identitylineplot.jpeg')
+
+
+Creation of line plot by passing a single ndarray:
+--------------------------------------------------
+plt.plot(a,b) ----> a for x-axis and b for y-axis.
+plt.plot(a) ---->a is for y-axis and x-axis values will be generated automatically by matplotlib from 0 to N-1
+
+a = np.array([10,20,30,40,50])
+plt.plot(a) # 0 to 4 will be considered for x-axis.
+Now the data points are: (0,10),(1,20),(2,30),(3,40),(4,50)
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.array([10,20,30,40,50])
+plt.plot(a,'o-r')
+plt.show()
+
+
+Multiple lines on the same plot:
+--------------------------------
+We can plot any number of line plots on the same graph.
+This approach is helpful for comparison purpose.
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+i = x
+s = x**2
+c = x**3
+plt.plot(x,i,'o-r')
+plt.plot(x,s,'o-b')
+plt.plot(x,c,'o-g')
+plt.title('One Graph, but multiple plots')
+plt.show()
+
+shortcut way:
+-------------
+We can also use single plot() function for all 3 lines.
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+i = x
+s = x**2
+c = x**3
+plt.plot(x,i,'o-r',x,s,'o-b',x,c,'o-g')
+plt.title('One Graph, but multiple plots')
+plt.show()
+
+
+Note:
+plt.plot(x,i,'o-r',x,s,'o-b',x,c,'o-g',lw=10)
+
+
+For the first line: x,i,'o-r'
+For the second line: x,s,'o-b'
+For the third line: x,c,'o-g'
+linewidth property is applicable for all 3 lines.
+
+
+plt.title('Square function line plot')
+plt.xlabel('x value')
+plt.ylabel('square of x')
+
+How to customize title properties:
+-----------------------------------
+title(label, fontdict=None, loc=None, pad=None, *, y=None, **kwargs)
+    Set a title for the Axes.
+
+label : str
+        Text to use for the title
+
+fontdict : dict
+        A dictionary controlling the appearance of the title text
+
+loc : {'center', 'left', 'right'}
+pad : float, default: :rc:`axes.titlepad`
+        The offset of the title from the top of the Axes, in points.
+
+**kwargs --->To customize font properties
+TEXT properties of matplotlib: 
+   https://matplotlib.org/stable/tutorials/text/text_props.html
+
+family	[ 'serif' | 'sans-serif' | 'cursive' | 'fantasy' | 'monospace' ]
+style or fontstyle	[ 'normal' | 'italic' | 'oblique' ]
+weight or fontweight	[ 'normal' | 'bold' | 'heavy' | 'light' | 'ultrabold' | 'ultralight']
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(1,11)
+s = x**2
+plt.plot(x,s,'o-r')
+plt.title('Square Function Plot',{'color':'b','size':20,'backgroundcolor':'yellow','alpha':1,'fontstyle':'italic','family':'cursive','weight':1000,'rotation':1},loc='left',pad=25,color='red')
+plt.show()
+
+https://matplotlib.org/stable/tutorials/text/text_props.html
+
+
+Customization of xlabel and ylabel:
+-----------------------------------
+exactly same as title customization only
+
+xlabel(xlabel, fontdict=None, labelpad=None, *, loc=None, **kwargs)
+    Set the label for the x-axis.
+
+ylabel(ylabel, fontdict=None, labelpad=None, *, loc=None, **kwargs)
+    Set the label for the y-axis.
+
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,11)
+b = a**2
+plt.plot(a,b)
+plt.title('Square Function Line plot')
+plt.xlabel('Year',{'color':'r','size':20,'backgroundcolor':'yellow','rotation':10,'alpha':1,'fontstyle':'italic','family':'cursive','weight':1000})
+plt.ylabel('Data Science Sales',color='r',size=20,backgroundcolor='yellow',rotation=100,alpha=1,fontstyle='italic',family='cursive',weight=1000)
+plt.show()
+
+
+Note: {'color':'r'}  and
+      color='b'
+ In the case of conflict keyword arguments will get more priority.
+
+
+Note: fontdict properties are same for title,xlabel and ylabel. These values can be passed as keyword arguments also. In the case of conflict, keyword arguments will get more priority.
+
+How to add grid lines to the plot:
+---------------------------------
+We can add grid lines to the plot. For this we have to use grid() function.
+plt.grid()
+
+
+grid(b=None, which='major', axis='both', **kwargs)
+    Configure the grid lines.
+
+
+b : bool or None, optional
+        Whether to show the grid lines. If any *kwargs* are supplied,
+        it is assumed you want the grid on and *b* will be set to True.
+
+        If *b* is *None* and there are no *kwargs*, this toggles the
+        visibility of the lines.
+
+plt.grid()--->on-->grid lines are visible
+plt.grid()-->off-->grid lines are invisible
+plt.grid()--->on-->grid lines are visible
+plt.grid()-->off-->grid lines are invisible
+
+case-1:
+plt.grid()
+In this case grid will be visible.
+
+case-2:
+plt.grid()
+plt.grid()
+
+grid lines won't be visible
+
+case-3:
+plt.grid()
+plt.grid(color='g')
+
+grid lines are visible
+
+case-4:
+plt.grid(b=True)
+plt.grid(b=False)
+
+grid lines are invisible
+
+
+which property:
+---------------
+major grid lines and minor grid lines
+It decides which grid lines have to display whether major or minor 
+The allowed values:
+
+which : {'major', 'minor', 'both'}
+        The default value is major.
+
+
+
+>>> help(plt.minorticks_on)
+Help on function minorticks_on in module matplotlib.pyplot:
+
+minorticks_on()
+    Display minor ticks on the axes.
+
+    Displaying minor ticks may reduce performance; you may turn them off
+    using `minorticks_off()` if drawing speed is a problem.
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.array([10,20,30,40,50])
+plt.plot(a,a,'o-r')
+plt.minorticks_on()
+plt.grid(which='both')
+plt.show()
+
+
+Difference between major and minor grid lines:
+----------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.array([10,20,30,40,50])
+plt.plot(a,a,'o-r',lw=7,markersize=10,mfc='yellow')
+plt.grid(color='red',lw=3)
+plt.minorticks_on()
+plt.grid(which='minor',color='g')
+plt.show()
+
+
+axis property:
+--------------
+Along which axis, grid lines have to display
+
+axis : {'both', 'x', 'y'},
+default value: both
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.array([10,20,30,40,50])
+plt.plot(a,a,'o-r',lw=7,markersize=10,mfc='yellow')
+plt.grid(axis='y')
+plt.show()
+
+
+
+Note: We can use several keyword arguments also.
+plt.grid(color='g',lw=2,linestyle=':')
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.array([10,20,30,40,50])
+plt.plot(a,a,'o-r',lw=7,markersize=10,mfc='yellow')
+plt.grid(color='g',lw=2,linestyle=':')
+plt.show()
+
+Adding Legend:
+---------------
+If multiple lines present then it is difficult to identify which line represents which dataset/function.
+
+To overcome this problem we can add legend.
+plt.legend()
+
+
+Syntax:
+legend(*args, **kwargs)
+
+Call signatures::
+
+        legend()
+        legend(labels)
+        legend(handles, labels)
+
+
+1. legend():
+------------
+entries will be added to the legend in the order of plots creation.
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+plt.plot(a,a,marker='o',label='identity')
+plt.plot(a,a**2,marker='o',label='square')
+plt.plot(a,a**3,marker='o',label='cubic')
+plt.legend()
+plt.show()
+
+2. legend(labels)
+------------------
+The argument is list of strings.
+Each string is considered as a lable for the plots, in the order they created.
+
+plt.legend(['label-1','label-2','label-3'])
+
+This approach is best suitable for adding legend for already existing plots.
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+plt.plot(a,a,marker='o')
+plt.plot(a,a**2,marker='o')
+plt.plot(a,a**3,marker='o')
+plt.legend(['identity','square','cubic'])
+plt.show()
+
+Note: This approach is not recommended to use because we should aware the order in which plots were created.
+
+legend(handles, labels):
+-----------------------
+We can define explicitly lines and labels in the legend() function itself.
+It is recommended approach as we have complete control.
+
+plt.legend([line1,line2,line3],['label-1','label-2','label-3'])
+
+
+observation:
+l = [10]
+a = l
+print(a) #[10]
+
+a, = l #unpack list elements and then assign values ot provided variables
+print(a) #10
+
+
+
+plt.plot(x,i,'o-r',x,s,'o-b',x,c,'o-g',lw=10)
+
+
+For the first line: x,i,'o-r'
+For the second line: x,s,'o-b'
+For the third line: x,c,'o-g'
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+line1, = plt.plot(a,a,'o-r')
+line2, = plt.plot(a,a**2,'o-b')
+line3, = plt.plot(a,a**3,'o-g')
+plt.legend([line1,line3,line2],['identity','cubic','square'])
+plt.show()
+
+
+How to adjust legend location:
+------------------------------
+Based on our requirement we can decide legend location in the plot.
+loc argument
+loc--->location
+
+The possible values for the location are:
+
+             ===============   =============
+            Location String   Location Code
+            ===============   =============
+            'best'            0
+            'upper right'     1
+            'upper left'      2
+            'lower left'      3
+            'lower right'     4
+            'right'           5
+            'center left'     6
+            'center right'    7
+            'lower center'    8
+            'upper center'    9
+            'center'          10
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+lines = plt.plot(a,a,'o-r',a,a**2,'o-b',a,a**3,'o-g')
+plt.legend(lines,['identity','square','cubic'],loc = 10)
+plt.show()
+
+How to specify number of columns in the legend:
+-----------------------------------------------
+Bydefault the number of columns: 1
+But we can customize by using ncol argument.
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+lines = plt.plot(a,a,'o-r',a,a**2,'o-b',a,a**3,'o-g')
+plt.legend(lines,['identity','square','cubic'],ncol=3)
+plt.show()
+
+We can do more customization for the legend like
+
+1. We can add title to the legend.
+2. We can change look and feel
+3. We can change fontsize and color
+4. We can place legend outside of the plot
+etc
+
+Adding title to the legend:
+---------------------------
+We can title for the legend explicitly. For this we have to use title keyword argument.
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+lines = plt.plot(a,a,'o-r',a,a**2,'o-b',a,a**3,'o-g')
+plt.legend(lines,['identity','square','cubic'],title='3 common functions')
+plt.show()
+
+
+Diagram: legend_title
+
+
+How to add legend outside of the plot:
+--------------------------------------
+We can add legend outside of the plot also.
+For this we have to use loc keyword argument.
+loc = (x,y)
+
+Diagram: legend_loc1
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10)
+lines = plt.plot(a,a,'o-r',a,a**2,'o-b',a,a**3,'o-g')
+plt.legend(lines,['identity','square','cubic'],loc=(0,1.1))
+plt.tight_layout()
+plt.show()
+
+Diagram: legend_loc2
+
+Customization of tick location and labels:
+------------------------------------------
+Ticks are the markers to represent specific value on the axis.
+Ticks are very helpful to locate data points on the plot very easily.
+Based on our input, matplotlib decides tick values automatically.
+Based on our requirement, we can customize tick location and labels.
+For this we have to use
+    xticks()
+    yticks()
+
+xticks(ticks=None, labels=None, **kwargs)
+    Get or set the current tick locations and labels of the x-axis.
+
+    Pass no arguments to return the current values without modifying them.
+
+
+getter method--->to get data
+setter method-->to set our own data
+
+plt.xticks(ticks=[0,1,2,3,4,5,6,7,8,9,10]) #to place our own xtick values
+
+For these xticks we can add labels also
+plt.xticks([0,1,2,3,4,5,6,7,8,9,10],['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010']) #to place our own xtick values
+
+
+We can customize label properties by using keyword arguments like color,font,size etc
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(11)
+b = a*100
+plt.plot(a,b,'o-r')
+plt.grid()
+plt.title('Sales Report')
+plt.xlabel('Year')
+plt.ylabel('Number of sales')
+plt.xticks([0,1,2,3,4,5,6,7,8,9,10],['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010'],color='blue',size=15,rotation=30) #to place our own xtick values
+plt.show()
+
+
+Similarly we can customize yticks also.
+plt.yticks([0,100,200,300,400,500,600,700,800,900,1000])
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(11)
+b = a*100
+plt.plot(a,b,'o-r')
+plt.grid()
+plt.title('Sales Report')
+plt.xlabel('Year')
+plt.ylabel('Number of sales')
+plt.xticks([0,1,2,3,4,5,6,7,8,9,10],['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010'],color='blue',size=15,rotation=30) #to place our own xtick values
+plt.yticks([0,500,1000])
+plt.show()
+
+Note:
+1. Without providing tick values we cannot provide labels, otherwise we will get error.
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(11)
+b = a*100
+plt.plot(a,b,'o-r')
+plt.grid()
+plt.title('Sales Report')
+plt.xlabel('Year')
+plt.ylabel('Number of sales')
+plt.xticks(labels=['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010'],color='blue',size=15,rotation=30) #to place our own xtick values
+plt.yticks([0,500,1000])
+plt.show()
+
+TypeError: xticks(): Parameter 'labels' can't be set without setting 'ticks'
+
+2. If we pass empty list to ticks then tick values will become invisible.
+plt.yticks([])
+
+How to set limit range of values on x-axis and y-axis:
+-------------------------------------------------------
+xlim() and ylim() functions
+
+for x-axis:
+left
+right
+
+For y-axis:
+bottom
+top
+
+
+xlim(*args, **kwargs)
+    Get or set the x limits of the current axes.
+
+    Call signatures::
+
+        left, right = xlim()  # return the current xlim
+        xlim((left, right))   # set the xlim to left, right
+        xlim(left, right)     # set the xlim to left, right
+
+    If you do not specify args, you can pass *left* or *right* as kwargs,
+    i.e.::
+
+        xlim(right=3)  # adjust the right leaving left unchanged
+        xlim(left=1)  # adjust the left leaving right unchanged
+If we are not passing any argument to xlim() function then it acts as getter function.
+If we are passing any argument then it acts as setter function.
+
+Getting left and right limits on the x-axis:
+--------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,101)
+b = a**2
+plt.plot(a,b,'o-r')
+plt.grid()
+left,right = plt.xlim()
+bottom,top = plt.ylim()
+print('Left limit on the x-axis:',left)
+print('Right limit on the x-axis:',right)
+print('Bottom limit on the y-axis:',bottom)
+print('Top limit on the y-axis:',top)
+plt.show()
+
+
+Left limit on the x-axis: -3.95
+Right limit on the x-axis: 104.95
+Bottom limit on the y-axis: -498.95000000000005
+Top limit on the y-axis: 10499.95
+
+
+To set left and right limits on x-axis:
+---------------------------------------
+plt.xlim(left,right)
+plt.xlim((left,right))
+plt.xlim(right=3) left will be generated by matplotlib
+plt.xlim(left=3) right will be generated by matplotlib
+plt.xlim(3)----->3 is for left and default for right
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,101)
+b = a**2
+plt.plot(a,b,'o-r')
+plt.grid()
+#plt.xlim(1,50) # left is 1 and right is 50
+#plt.xlim(left=1) #left is 1 and for right default value
+#plt.xlim(right=50) #left is default and for right 50
+plt.xlim(1)
+plt.show()
+
+
+ylim() function:
+----------------
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,101)
+b = a**2
+plt.plot(a,b,'o-r')
+plt.grid()
+plt.ylim(bottom=100)
+print(plt.ylim())
+plt.show()
+
+
+How to set limits for x-axis and y-axis
+How to customize xticks and yticks
+
+on the x-axis: 0 to 50   0-->left,50-->right
+on the y-axis: 10 to 100 ,  10--->bottom and 100---->top
+
+
+Scaling: How to set scale for x-axis and y-axis:
+------------------------------------------------
+The difference between any two consecutive points on any axis is called scaling.
+
+The most commonly used scales are:
+
+1. Linear scaling
+2. Logarithmic Scaling
+
+1. Linear scaling:
+------------------
+The difference between any two consecutive points on the given axis is always fixed, such type of scaling is called linear scaling.
+Default scaling in matplotlib is linear scaling.
+
+If the data set values are spreaded over small range, then linear scaling is the best choice.
+
+2. Logarithmic Scaling:
+-----------------------
+The difference between any two consecutive points on the given axis is not fixed and it is multiples of 10, such type of scaling is called logarithmic scaling.
+
+If the data set values are spreaded over big range, then logarithmic scaling is the best choice.
+
+plt.xticks()
+plt.yticks()
+plt.xlim()
+plt.ylim()
+
+
+plt.xscale()
+plt.yscale()
+
+xscale(value, **kwargs)
+    Set the x-axis scale.
+value : {"linear", "log", "symlog", "logit", ...}
+
+yscale(value, **kwargs)
+    Set the y-axis scale.
+value : {"linear", "log", "symlog", "logit", ...}
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10000)
+b = np.arange(10000)
+plt.plot(a,b)
+plt.grid()
+#plt.xscale('linear')
+plt.xscale('log')
+plt.show()
+
+Linear scaling for x-axis and logarithmic scaling for y-axis:
+-------------------------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10000)
+b = np.arange(10000)
+plt.plot(a,b)
+plt.grid()
+plt.xscale('linear') #linear scaling
+plt.yscale('log') #logarithmic scaling
+plt.show()
+
+For both x-axis and y-axis, logarithmic scaling:
+------------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10000)
+b = np.arange(10000)
+plt.plot(a,b)
+plt.grid()
+plt.xscale('log') #logarithmic scaling
+plt.yscale('log') #logarithmic scaling
+plt.show()
+
+How to customize base value in logarithmic scaling:
+---------------------------------------------------
+We have to use keyword argument base
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10000)
+b = np.arange(10000)
+plt.plot(a,b)
+plt.grid()
+plt.xscale('log',base=2) #logarithmic scaling
+plt.yscale('log',base=9) #logarithmic scaling
+plt.show()
+
+plotting styles:
+----------------
+We can customize look and feel of hte plot by using style library.
+There are multiple predefined styles are available...
+
+plt.style.available
+
+
+
+>>> plt.style.available
+['Solarize_Light2', '_classic_test_patch', 'bmh', 'classic', 'dark_background', 'fast', 'fivethirtyeight', 'ggplot', 'grayscale', 'seaborn', 'seaborn-bright', 'seaborn-colorblind', 'seaborn-dark', 'seaborn-dark-palette', 'seaborn-darkgrid', 'seaborn-deep', 'seaborn-muted', 'seaborn-notebook', 'seaborn-paper', 'seaborn-pastel', 'seaborn-poster', 'seaborn-talk', 'seaborn-ticks', 'seaborn-white', 'seaborn-whitegrid', 'tableau-colorblind10']
+
+
+matplotlib--->one visuliazation library
+seaborn -->another visuliazation library
+
+Note:
+1. ggplot--->To emulate the most powerful ggplot style of R language.
+2. seaborn-->To emulate seaborn style
+3. fivethirtyeight--->The most commonly used style in real time.
+etc
+
+We can set our own customized style for the plot as follows:
+plt.style.use('ggplot')
+
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(10000)
+b = np.arange(10000)
+#plt.style.use('ggplot')
+#plt.style.use('seaborn')
+plt.style.use('grayscale')
+plt.plot(a,b)
+plt.show()
+
+Procedural/Functional oriented vs Object Oriented Approaches of plotting:
+--------------------------------------------------------------------------
+2 approaches to create plot
+
+1. Procedural/Functional oriented
+2. OOP
+
+procedural:
+----------
+def f1():
+	print('f1 function')
+
+def f2():
+	print('f2 function')
+
+def f3():
+	print('f31 function')
+
+def f4():
+	print('f4 function')
+
+f1()
+f2()
+f3()
+f4()
+
+OOP approach:
+-------------
+class Test:
+	def m1(self):
+		print('m1 method')
+	def m2(self):
+		print('m2 method')
+	def m3(self):
+		print('m3 method')
+	def m4(self):
+		print('m4 method')
+
+t = Test()
+t.m1()
+t.m2()
+t.m3()
+t.m4()
+
+
+1. Procedural/Functional  Approach:
+-----------------------------------
+We can create plots with the help of mulitple functions from pyplot module.
+
+#Creation of line plot to represent square functionality from 1 to 10.
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,11)
+b = a**2
+plt.plot(a,b)
+plt.xlabel('N')
+plt.ylabel('Square Value of N')
+plt.title('Square Function')
+plt.show()
+
+
+plot()
+xlabel()
+ylable()
+title()
+show()
+
+2. Object Oriented Approach:
+----------------------------
+In this approach, we have to create objects and on those objects we have to call corresponding methods to  create a plot.
+
+1. Creation of Figure object:
+-----------------------------
+fig = plt.figure()
+
+figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True, FigureClass=<class 'matplotlib.figure.Figure'>, clear=False, **kwargs)
+    Create a new figure, or activate an existing figure.
+
+fig = plt.figure()
+
+2. Creation of Axes object:
+---------------------------
+Once figure object is ready, then we have to add axes to that object. For this we have to use add_axes() method of Figure class. This method returns Axes object.
+
+
+add_axes(self, *args, **kwargs)
+    Add an Axes to the figure.
+
+    Call signatures::
+
+        add_axes(rect, projection=None, polar=False, **kwargs)
+        add_axes(ax)
+
+rect : sequence of float
+        The dimensions [left, bottom, width, height] of the new Axes. All
+        quantities are in fractions of figure width and height.
+
+
+3. plotting the graph and setting axes properties:
+--------------------------------------------------
+Once Axes object is ready, then we can use the following methods.
+
+axes.plot(a,b)     
+axes.set_xlabel('xlabel')
+axes.set_ylabel('ylabel')
+axes.set_title('title')
+plt.show()
+
+
+
+
+
+#Creation of line plot to represent square functionality from 1 to 10.
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,11)
+b = a**2
+fig = plt.figure()
+axes = fig.add_axes([0.2,0.3,0.6,0.4]) #[left,bottom,width,height] lbwh
+axes.plot(a,b)     
+axes.set_xlabel('N')
+axes.set_ylabel('Square of N')
+axes.set_title('Square Function')
+axes.grid()
+plt.show()
+
+
+Note: We can use single set() method to set all axes properties like title,xlabel,ylabel,xlim,ylim etc
+
+axes.set(xlabel='N',ylabel='Square of N', title='Square Function',xlim=(1,5),ylim=(1,25))
+
+
+
+#Creation of line plot to represent square functionality from 1 to 10.
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.arange(1,11)
+b = a**2
+fig = plt.figure()
+axes = fig.add_axes([0.2,0.3,0.6,0.4]) #[left,bottom,width,height] lbwh
+axes.plot(a,b)     
+axes.set(xlabel='N',ylabel='Square of N', title='Square Function',xlim=(1,5),ylim=(1,25))
+axes.grid()
+plt.show()
+
+Summary:
+--------
+1. Creation of Figure object
+2. Creation of Axes object
+3. plot the graph
+4. set the properties of the axis.
+
+Bar Chart/Bar Graph/Bar Plot:
+-----------------------------
+In a line plot, the data points will be marked and these markers will be connected by line.
+
+But in bar chart, data will be represented in the form of bars.
+
+4 types of bar charts
+
+1. Simple bar chart/vertical bar chart
+2. Horizontal bar chart
+3. Stacked Bar chart
+4. Clustered Bar Chart/Grouped Bar Chart
+
+
+1. Simple bar chart/vertical bar chart:
+---------------------------------------
+The data will be represented in the form of vertical bars.
+Each vertical bar represents an individual category.
+The height/length of the bar is based on value it represents.
+Most of the times the width of the bar is fixed, but we can customize.
+The default width: 0.8
+
+By using bar() function we can create.
+
+plt.bar()
+
+Syntax:
+-------
+bar(x, height, width=0.8, bottom=None, *, align='center', data=None, **kwargs)    Make a bar plot.
+
+x--->values of x-axis, category names
+height--->values for y-axis, height of the bars.
+width-->width of each bar,default is 0.8
+bottom-->From where bar has to start.
+align-->alignment of the bars on the x-axis.
+      align : {'center', 'edge'}, default: 'center'
+        Alignment of the bars to the *x* coordinates:
+
+        - 'center': Center the base on the *x* positions.
+        - 'edge': Align the left edges of the bars with the *x* positions.
+
+        To align the bars on the right edge pass a negative *width* and
+        ``align='edge'``.
+
+
+
+eg-1: Represent the number of movies of each hero by using bar chart
+--------------------------------------------------------------------
+import matplotlib.pyplot as plt
+
+heroes = ['Prabhas','Pawan','Chiranjeevi','Sharukh','Amitabh'] # x-axis values
+movies = [100,300,200,600,1000] #height of bars, values for y-axis
+plt.bar(heroes,movies)
+
+plt.xlabel('Hero Name',color='b',fontsize=15)
+plt.ylabel('Number of Movies',color='b',fontsize=15)
+plt.title('Hero wise number of movies',color='r',fontsize=15)
+plt.show()
+
+
+We can customize several things like
+
+1. changing color of each bar
+2. changing width of each bar
+3. changing bottom of each bar
+4. changing alignments
+etc
+
+Observations:
+-------------
+1. plt.bar(heroes,movies,color='r')
+   Now all bars with RED color
+
+2. Separate color for each bar
+c = ['r','b','k','g','orange']
+plt.bar(heroes,movies,color=c)
+
+3. The width of each bar should be 0.5( default is 0.8)
+plt.bar(heroes,movies,width=0.5	)
+
+4. Different widths for bars
+w = [0.8,0.6,0.7,0.9,0.5]
+plt.bar(heroes,movies,width=w)
+
+5. bottom should be 50 instead of 0
+plt.bar(heroes,movies,bottom=50)
+
+	
+6. Different bottom values for bar?
+b=[0,10,30,50,70]
+plt.bar(heroes,movies,bottom=b)
+
+7. alignment: center
+for left alignment:
+   plt.bar(heroes,movies,align='edge')
+
+for right alignment:
+ plt.bar(heroes,movies,width=-0.8,align='edge')
+
+eg-2: Mobile Sales of Nokia Company from 2011 to 2020:
+------------------------------------------------------
+import matplotlib.pyplot as plt
+
+years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
+sales = [10000, 25000, 45000, 30000, 10000, 5000,70000,60000,65000,50000]
+
+c = ['r','k','y','g','orange','m','c','b','lime','violet']
+plt.bar(years,sales,color=c)
+
+plt.xlabel('Year',color='b',fontsize=15)
+plt.ylabel('Number of Sales',color='b',fontsize=15)
+plt.title('Nokia Mobile Sales in the last Decade',color='r',fontsize=15)
+plt.xticks(years,rotation=30)
+plt.tight_layout()
+plt.grid(axis='y')
+plt.show()
+
+How to add labels to the bar:
+----------------------------
+We can add labels to any plot by using the following 2 functions
+
+1. pyplot.text()
+2. pyplot.annotate()
+
+1. pyplot.text():
+----------------
+Syntax:
+text(x, y, s, fontdict=None, **kwargs)
+    Add text to the Axes.
+
+    Add the text *s* to the Axes at location *x*, *y* in data coordinates.
+
+Adding Labels for the data points of lineplot:
+----------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+
+a = np.arange(10)
+plt.plot(a,a,'o-r')
+for i in range(a.size): # 0 to 9
+	plt.text(a[i]+0.4,a[i]-0.2,f'({a[i]},{a[i]})',color='b')
+plt.show()
+
+2. pyplot.annotate():
+---------------------
+annotate(text, xy, *args, **kwargs)
+    Annotate the point *xy* with text *text*.
+    xy : (float, float)
+        The point *(x, y)* to annotate.
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+a = np.arange(10)
+plt.plot(a,a,'o-r')
+for i in range(a.size): # 0 to 9
+	#plt.text(a[i]+0.4,a[i]-0.2,f'({a[i]},{a[i]})',color='b')
+	plt.annotate(f'({a[i]},{a[i]})',(a[i]+0.4,a[i]-0.2),color='g')
+plt.show()
+
+
+How to add labels to the bar chart:
+-----------------------------------
+import matplotlib.pyplot as plt
+
+years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
+sales = [10000, 25000, 45000, 30000, 10000, 5000,70000,60000,65000,50000]
+
+plt.bar(years,sales,color='r')
+
+plt.xlabel('Year',color='b',fontsize=15)
+plt.ylabel('Number of Sales',color='b',fontsize=15)
+plt.title('Nokia Mobile Sales in the last Decade',color='r',fontsize=15)
+plt.xticks(years,rotation=30)
+plt.tight_layout()
+for i in range(len(years)): # 0 to 9
+	plt.text(years[i],sales[i]+500,sales[i],ha='center',color='b')
+plt.show()
+
+
+
+With more readable labels:
+--------------------------
+import matplotlib.pyplot as plt
+
+years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
+sales = [10000, 25000, 45000, 30000, 10000, 5000,70000,60000,65000,50000]
+
+plt.bar(years,sales,color='r')
+
+plt.xlabel('Year',color='b',fontsize=15)
+plt.ylabel('Number of Sales',color='b',fontsize=15)
+plt.title('Nokia Mobile Sales in the last Decade',color='r',fontsize=15)
+plt.xticks(years,rotation=30)
+plt.tight_layout()
+for i in range(len(years)): # 0 to 9
+	plt.text(years[i],sales[i]+500,str(sales[i]//1000)+'k',ha='center',color='b')
+	#plt.annotate(str(sales[i]//1000)+'k',(years[i],sales[i]+500),ha='center',color='g',backgroundcolor='yellow')
+plt.show()
+
+
+
+color = ['#f54287','#f542ec','#bc42f5','#427ef5','#42d7f5','#4287f5','#f56f42','#f2f542','#5df542','#42f5b6']
+--------------------------------------------------------
+Plotting bar chart with data from csv file:
+-------------------------------------------
+Assume that data is available in students.csv file, which is present in current working directory.
+
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+
+names = np.array([],dtype='str')
+marks = np.array([],dtype='int')
+
+f = open('students.csv','r')
+r = csv.reader(f) # Returns csvreader object
+h = next(r) #to read header and ignore
+for row in r:
+	names = np.append(names,row[0])
+	marks = np.append(marks,int(row[1]))
+
+plt.bar(names,marks,color='r')
+plt.show()
+
+
+Note:
+If the labels are too long or too many values to represent then we should go for horizontal bar chart instead of vertical bar chart.
+
+bar()--->to create vertical bar chart
+barh() -->to create horizontal bar chart
+
+
+
+
+
+Horizontal bar chart:
+---------------------
+Here the data will be represented in the form of horizontal bars.
+Each bar represents an individual category.
+The categories will be plotted on y-axis and data values will be plotted on x-axis.
+width/length of the bar is proportional to the value it represents.
+The default height is 0.8, but we can customize this value.
+
+
+barh() --->To create horizontal bar chart.
+
+Syntax:
+barh(y, width, height=0.8, left=None, *, align='center', **kwargs)
+    Make a horizontal bar plot.
+
+vertical   vs    horizontal
+------------------------
+height   ----->width
+width ---> height
+bottom -->left
+bar() -->barh()
+
+
+
+students.csv:
+------------
+Name of Student	Marks
+Sunny	100
+Bunny	200
+Chinny	300
+Vinny	200
+Pinny	400
+Zinny	300
+Kinny	500
+Minny	600
+Dinny	400
+Ginny	700
+Sachin	300
+Dravid	900
+Kohli	1000
+Rahul	800
+Ameer	600
+Sharukh	500
+Salman	700
+Ranveer	600
+Katrtina	300
+Kareena	400
+
+
+demo program:
+--------------
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+
+names = np.array([],dtype='str')
+marks = np.array([],dtype='int')
+
+f = open('students.csv','r')
+r = csv.reader(f) # Returns csvreader object
+h = next(r) #to read header and ignore
+for row in r:
+	names = np.append(names,row[0])
+	marks = np.append(marks,int(row[1]))
+plt.barh(names,marks,color='r')
+plt.xlabel('Marks',fontsize=15,color='b')
+plt.ylabel('Name of Student',fontsize=15,color='b')
+plt.title('Students Marks Report',fontsize=15,color='r')
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
+
+
+Vertical bar chart
+Horizontal bar chart
+
+
+Stacked Bar chart:
+------------------
+If each category contains multiple subcategories then we should go for stacked bar chart. Here each subcategory will be plotted on top of other subcategory.
+
+eg-1: Country wise total population we have to represent.But in that population we have to plot separately men and women.
+
+eg-2: Country wise medals we have to represent.But in that total number of medals, we have to represent gold,silver and bronze medals separately.
+
+
+verical bar chart--->bar()
+horizontal bar chart--->barh()
+stacked bar chart--->either bar() or barh()
+
+The stacked bar chart can be either vertical or horizontal
+
+demo program-1: marks wise student data
+---------------
+import matplotlib.pyplot as plt
+
+names = ['Sunny','Bunny','Chinny','Vinny','Tinny']
+english_marks = [90,80,85,25,50]
+maths_marks = [25,23,45,32,50]
+plt.bar(names,english_marks,color='r')
+plt.bar(names, maths_marks, bottom=english_marks, color='green')
+plt.show()
+
+
+with labels on the bar:
+-----------------------
+import matplotlib.pyplot as plt
+import numpy as np
+names = ['Sunny','Bunny','Chinny','Vinny','Tinny']
+english_marks = np.array([90,80,85,25,50])
+math_marks = np.array([25,23,45,32,25])
+total_marks = english_marks+math_marks
+
+plt.bar(names,english_marks,color='#09695c',label='English')
+plt.bar(names,math_marks,bottom=english_marks,color='#9c0c8b',label="Maths")
+
+for i in range(len(names)): 
+	plt.text(names[i],(english_marks[i]/2),str(english_marks[i]),ha='center',color='white',weight=1000)
+	plt.text(names[i],(english_marks[i]+math_marks[i]/2),str(math_marks[i]),ha='center',color='white',weight=1000)
+	plt.text(names[i],(total_marks[i]+2), str(total_marks[i]),ha='center',color='#008080',weight=1000)
+
+plt.xlabel("Name of the Student",color='#570b66', fontsize=15,weight=1000)
+plt.ylabel("Marks",color='#570b66', fontsize=15,weight=1000)
+plt.title("Student -wise Marks",color='#ED0A3F', fontsize=15,weight=1000)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+Diagram: stacked_bar_with_text_labels
+
+
+eg-2: country wise medals but sub categories
+import matplotlib.pyplot as plt
+import numpy as np
+country_name = ['India','China','US','UK']
+gold_medals = np.array([60,40,50,20])
+silver_medals = np.array([50,30,25,43])
+bronze_medals = np.array([55,24,45,6])
+plt.bar(country_name,gold_medals,color='#FFD700',label='gold')
+plt.bar(country_name,silver_medals,bottom = gold_medals,color='#C0C0C0',label='silver')
+plt.bar(country_name,bronze_medals,bottom = gold_medals+silver_medals ,color='#CD7F32',label='bronze')
+plt.xlabel('Country Name',color='b',fontsize=15)
+plt.ylabel('Number of Medals',color='b',fontsize=15)
+plt.title('Country Wise Medals Report',color='r',fontsize=15)
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+eg-3: Stacked Horizontal Bar Chart:
+-----------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+country_name = ['India','China','US','UK']
+gold_medals = np.array([60,40,50,20])
+silver_medals = np.array([50,30,25,43])
+bronze_medals = np.array([55,24,45,6])
+plt.barh(country_name,gold_medals,color='#FFD700',label='gold')
+plt.barh(country_name,silver_medals,left = gold_medals,color='#C0C0C0',label='silver')
+plt.barh(country_name,bronze_medals,left = gold_medals+silver_medals ,color='#CD7F32',label='bronze')
+plt.ylabel('Country Name',color='b',fontsize=15)
+plt.xlabel('Number of Medals',color='b',fontsize=15)
+plt.title('Country Wise Medals Report',color='r',fontsize=15)
+plt.legend()
+plt.show()
+
+
+bar()--->barh()
+bottom--->left
+xlabel and ylabels are interchanged.
+
+
+Vertical bar chart
+Horizontal bar chart
+stacked bar chart
+
+4. Clustered Bar chart/Grouped Bar Chart/Multiple Bar Chart:
+------------------------------------------------------------
+If each category contains multiple sub categories and if we want to represent all these sub categories side by side then we should go for Clustered Bar Chart.
+
+
+eg-1: Country wise total population we have to represent.But in that population we have to plot separately men and women side by side.
+
+eg-2: Country wise medals we have to represent.But in that total number of medals, we have to represent gold,silver and bronze medals separately side by side.
+
+We can create clustered bar chart by using either bar() or barh() functions.
+
+Demo program:
+-------------
+import matplotlib.pyplot as plt
+import numpy as np
+names = ['Sunny','Bunny','Chinny','Vinny','Tinny']
+english_marks = np.array([90,80,85,25,50])
+math_marks = np.array([25,23,45,32,25])
+xpos = np.arange(len(names)) #[0,1,2,3,4]
+w = 0.3
+plt.bar(xpos,english_marks,color='r',width=w)
+plt.bar(xpos+w,math_marks,color='g',width=w)
+#plt.xticks(xpos+0.15,names)
+plt.xticks(xpos+w/2,names)
+plt.legend(['eng','math'])
+plt.show()
+
+Demo program-2:
+---------------
+import matplotlib.pyplot as plt
+import numpy as np
+country_name = ['India','China','US','UK']
+gold_medals = np.array([60,40,50,20])
+silver_medals = np.array([50,30,25,43])
+bronze_medals = np.array([55,24,45,6])
+xpos = np.arange(len(country_name)) #[0,1,2,3]
+w = 0.2
+
+plt.bar(xpos,gold_medals,color='#FFD700',width=w)
+plt.bar(xpos+w,silver_medals,color='#C0C0C0',width=w)
+plt.bar(xpos+2*w,bronze_medals,color='#CD7F32',width=w)
+
+plt.xticks(xpos+w,country_name)
+plt.ylabel('Country Name',color='b',fontsize=15)
+plt.xlabel('Number of Medals',color='b',fontsize=15)
+plt.title('Country Wise Medals Report',color='r',fontsize=15)
+plt.legend(['gold','silver','bronze'])
+
+for i in range(len(country_name)): 
+	plt.text(xpos[i],gold_medals[i]+1,gold_medals[i],ha='center',color='r',weight=1000)
+	plt.text(xpos[i]+w,silver_medals[i]+1,silver_medals[i],ha='center',color='r',weight=1000)
+	plt.text(xpos[i]+2*w,bronze_medals[i]+1,bronze_medals[i],ha='center',color='r',weight=1000)
+	
+plt.show()
+
+
+
+eg-2A: India and Australia 20-20 overwise scores required to represent by using clustered bar chart?
+
+import matplotlib.pyplot as plt
+import numpy as np
+overs = np.arange(1,21)
+xpos=np.arange(overs.size)
+ind_score = [10,12,8,9,10,22,13,17,3,23,11,10,9,8,23,30,10,9,8,7]
+aus_score = [6,8,9,15,23,8,9,6,10,17,13,2,21,15,19,17,4,12,14,10]
+w=0.3
+plt.figure(num=1,figsize=(16,4),facecolor='g')
+plt.bar(xpos,ind_score,width=w)
+plt.bar(xpos+w,aus_score,width=w)
+plt.xticks(xpos+(w/2),labels=overs)
+plt.xlabel('Overs',color='b')
+plt.ylabel('Number of Runs',color='b')
+plt.title('Overwise Scores Summary')
+plt.legend(['IND','AUS'],ncol=2)
+plt.grid(axis='y')
+plt.show()
+                                                                                  
+horizontal clustered bar chart:
+-------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+plt.figure(num=1,figsize=(12,10),facecolor='yellow')
+names = ['Bunny','Chinny','Vinny','Pinny']
+ypos = np.arange(len(names)) #[0,1,2,3]
+h=0.1
+english=np.array([45,67,82,95])
+telugu=np.array([70,80,54,76])
+maths=np.array([65,45,99,78])
+science=np.array([88,37,56,87])
+social=np.array([78,90,37,42])
+hindi=np.array([78,88,65,56])
+plt.barh(ypos,english,height=h)
+plt.barh(ypos+h,telugu,height=h)
+plt.barh(ypos+2*h,maths,height=h)
+plt.barh(ypos+3*h,science,height=h)
+plt.barh(ypos+4*h,social,height=h)
+plt.barh(ypos+5*h,hindi,height=h)
+plt.yticks(ypos+2.5*h,names)
+plt.xlabel('Marks',color='b')
+plt.ylabel('Names',color='b')
+plt.title('Students Marks Report',color='b')
+plt.legend(['eng','tel','mat','sci','soc','hin'])
+plt.show()
+
+
+vertical bar charts
+horizontal bar charts
+stacked bar charts
+clustered bar charts
+
+Summary:
+--------
+1. If we want to compare different categories of values then we should go for bar chart. ie vertical bar chart and we can create by using bar() function.
+
+2. If we want to compare different categories of values and the labels are too long or multiple values to represent then we should go for horizontal bar chart. We can create by using barh() function.
+
+3. If we want to compare different categories of values and each category contains multiple sub categories and if we want to represent values on top of other then we should go for stacked bar chart. It can be either vertical or horizontal.
+
+4. If we want to compare different categories of values and each category contains multiple sub categories and if we want to represent values side by side then we should go for clustered bar chart. It can be either vertical or horizontal.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
